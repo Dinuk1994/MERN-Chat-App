@@ -10,7 +10,7 @@ const MessageContainer = () => {
         <div className="md:min-w-[650px] flex flex-col">
             {noChat ? (<NoChat />) : (
                 <>
-                    <div className="bg-green-600 opacity-80 px-4 flex justify-between items-center py-2 mb-2">
+                    <div className="bg-sky-700 opacity-80 px-4 flex justify-between items-center py-2 mb-2">
                         <div className="flex items-center">
                             <span className="label-text"></span>
                             <span className="text-white font-semibold text-lg">Harry Potter</span>

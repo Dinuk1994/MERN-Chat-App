@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 
 const Login = () => {
@@ -20,9 +21,9 @@ const Login = () => {
                         </label>
                         <input type="password" placeholder="Enter password" className="input bg-gray-600 text-white mt-2 input-bordered w-full h-10 max-w-xs" />
                     </div>
-                    <a href="#" className="p-2 text-sm text-white hover:underline hover:text-blue-600 mt-2 inline-block">
+                    <Link to="/signup" className="p-2 text-sm text-white hover:underline hover:text-blue-600 mt-2 inline-block">
                         {"Don't"} have an account?
-                    </a>
+                    </Link>
                     <div className="p-2 mr-2">
                         <button className="btn scroll mr-7 btn-block btn-sm text-white h-8 bg-cyan-500 hover:bg-cyan-700 "> Login</button>
                     </div>
