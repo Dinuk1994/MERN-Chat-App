@@ -5,22 +5,22 @@ import useSignup from "../../../hooks/useSignup";
 
 const SignUp = () => {
 
-    const[inputs,setInputs] = useState({
-        fullName : '',
-        userName : '',
-        password : '',
-        confirmPassword : '',
-        gender : ''
+    const [inputs, setInputs] = useState({
+        fullName: '',
+        userName: '',
+        password: '',
+        confirmPassword: '',
+        gender: ''
     });
 
     // eslint-disable-next-line no-unused-vars
-    const {loading, signup} = useSignup()
+    const { loading, signup } = useSignup()
 
-    const handleCheckBox=(gender)=>{
-        setInputs({...inputs,gender})
+    const handleCheckBox = (gender) => {
+        setInputs({ ...inputs, gender })
     }
 
-    const handleSubmit=async (e) =>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
         await signup(inputs)
     }
@@ -37,7 +37,7 @@ const SignUp = () => {
                         </label>
                         <input type="text" placeholder="Harry Potter" className="input bg-gray-600 text-white mt-2 input-bordered w-full h-10 max-w-xs"
                             value={inputs.fullName}
-                            onChange={(e)=>setInputs({...inputs,fullName:e.target.value})}
+                            onChange={(e) => setInputs({ ...inputs, fullName: e.target.value })}
                         />
                     </div>
                     <div className="mt-3">
@@ -46,35 +46,37 @@ const SignUp = () => {
                         </label>
                         <input type="text" placeholder="harrypotter" className="input bg-gray-600 text-white mt-2 input-bordered w-full h-10 max-w-xs"
                             value={inputs.userName}
-                            onChange={(e)=>setInputs({...inputs,userName:e.target.value})}
+                            onChange={(e) => setInputs({ ...inputs, userName: e.target.value })}
                         />
                     </div>
                     <div className="mt-3">
                         <label htmlFor="" className="p-2">
                             <span className="text-white label-text ">Password</span>
                         </label>
-                        <input type="password" placeholder="Enter password" className="input bg-gray-600 text-white mt-2 input-bordered w-full h-10 max-w-xs" 
+                        <input type="password" placeholder="Enter password" className="input bg-gray-600 text-white mt-2 input-bordered w-full h-10 max-w-xs"
                             value={inputs.password}
-                            onChange={(e)=>setInputs({...inputs,password:e.target.value})}
+                            onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
                         />
                     </div>
                     <div className="mt-3">
                         <label htmlFor="" className="p-2">
                             <span className="text-white label-text ">Confirm Password</span>
                         </label>
-                        <input type="password" placeholder="Re-enter password" className="input bg-gray-600 text-white mt-2 input-bordered w-full h-10 max-w-xs" 
+                        <input type="password" placeholder="Re-enter password" className="input bg-gray-600 text-white mt-2 input-bordered w-full h-10 max-w-xs"
                             value={inputs.confirmPassword}
-                            onChange={(e)=>setInputs({...inputs,confirmPassword : e.target.value})}
+                            onChange={(e) => setInputs({ ...inputs, confirmPassword: e.target.value })}
                         />
                     </div>
                     <div className="mt-3">
-                        <GenderBox onCheckBoxChange={handleCheckBox} selectedGender={inputs.gender}/>
+                        <GenderBox onCheckBoxChange={handleCheckBox} selectedGender={inputs.gender} />
                     </div>
                     <Link to="/login" className="text-sm px-2 text-white hover:underline hover:text-blue-600  inline-block">
                         Already have an account?
                     </Link>
                     <div className="p-2  mr-2">
-                        <button className="btn scroll mr-7 btn-block btn-sm text-white h-8 bg-cyan-500 hover:bg-cyan-700 "> Sign Up</button>
+                        <button disabled={loading} className="btn scroll mr-7 btn-block btn-sm text-white h-8 bg-cyan-500 hover:bg-cyan-700 ">
+                            {loading ? <span className="loading-spinner"></span> : "Sign Up"}
+                        </button>
                     </div>
                 </form>
 
