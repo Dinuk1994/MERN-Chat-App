@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useAuthContext } from "../../context/AuthContext"
+import { extractTime } from "../../formattedTime/FormattedTime";
 import { useConversations } from "../../store/useConversation"
 
 
@@ -9,7 +10,8 @@ const Message = ({message}) => {
     const myMessage = message.senderId === authUser._id;
     const chatClassName = myMessage ? "chat-end" : 'chat-start';
     const profilePic = myMessage ? authUser.profilePic : selectedConversation?.profilePic
-    const chatColor = myMessage ? 'bg-blue-500' : "";
+    const chatColor = myMessage ? 'bg-cyan-700' : "";
+    const formattedTime = extractTime(message.createdAt)
     
     return (
         <div className={`chat ${chatClassName}`}>
@@ -21,8 +23,8 @@ const Message = ({message}) => {
                 </div>
             </div>
         
-            <div className={`chat-bubble bg-cyan-900 ${chatColor}`}>{message.message}</div>
-            <div className="chat-footer opacity-50">Seen at 12:46</div>
+            <div className={`chat-bubble  ${chatColor}`}>{message.message}</div>
+            <div className="chat-footer opacity-50 pb-1">{formattedTime}</div>
         </div>
     )
 }
