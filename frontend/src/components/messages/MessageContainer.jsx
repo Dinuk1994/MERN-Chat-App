@@ -4,13 +4,14 @@ import LogoutBtn from "./LogoutBtn"
 import MessageInput from "./MessageInput"
 import Messages from "./Messages"
 import { BiMessageRoundedDots } from "react-icons/bi";
+import { useAuthContext } from "../../context/AuthContext";
 
 const MessageContainer = () => {
-    const {selectedConversation , setSelectedConversation} = useConversations()
+    const { selectedConversation, setSelectedConversation } = useConversations()
 
-    useEffect(()=>{
-        return ()=>setSelectedConversation(null)
-    },[setSelectedConversation])
+    useEffect(() => {
+        return () => setSelectedConversation(null)
+    }, [setSelectedConversation])
 
     return (
         <div className="md:min-w-[650px] flex flex-col">
@@ -38,10 +39,12 @@ export default MessageContainer
 
 
 const NoChat = () => {
+    const{authUser} = useAuthContext()
     return (
         <div className="flex items-center justify-center w-full h-full">
-            <div className="px-4 text-center  text-green-600 text-3xl font-semibold flex flex-col items-center gap-2">
-                <p>Select chat to start chatting!</p>
+            <div className="px-4 text-center  text-green-600 font-semibold flex flex-col items-center gap-2">
+                <p className="text-3xl ">Welcome ! {authUser.fullName}</p>
+                <p className="text-xl">Select chat to start chatting!</p>
                 <BiMessageRoundedDots className="text-[150px]  text-center" />
             </div>
         </div>
