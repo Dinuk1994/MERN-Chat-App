@@ -1,5 +1,6 @@
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
+import { getRecieverSocketId ,io } from "../socket/socket.js";
 
 export const sendMessage = async (req, res) => {
     try {
@@ -25,19 +26,23 @@ export const sendMessage = async (req, res) => {
 
         if (newMessage) {
             conversation.messages.push(newMessage._id)
+
         }
-        //SOCKET.IO Functions
 
         // await conversation.save();
         // await newMessage.save();
-
-
         await Promise.all([conversation.save(), newMessage.save()]) //this will proceed the both in same time
+
+        //SOCKET.IO Functions
+        const recieverSocketId = getRecieverSocketId(receiverId);
+        if (recieverSocketId) {
+            io.to(recieverSocketId).emit("newMessage", newMessage) //io.to(<socket_id>).emit() used to send events to specific client
+        }  
 
         res.status(201).json(newMessage)
 
     } catch (err) {
-        res.status(500).json({ error: "Internal Server Error" })
+        res.status(500).json({ error: "Internal Server Errorjnnjnjnjnjn" })
     }
 }
 
