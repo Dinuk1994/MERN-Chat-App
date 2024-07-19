@@ -1,19 +1,25 @@
+import { useEffect } from "react";
+import { useConversations } from "../../store/useConversation";
 import LogoutBtn from "./LogoutBtn"
 import MessageInput from "./MessageInput"
 import Messages from "./Messages"
 import { BiMessageRoundedDots } from "react-icons/bi";
 
 const MessageContainer = () => {
+    const {selectedConversation , setSelectedConversation} = useConversations()
 
-    const noChat = false;
+    useEffect(()=>{
+        return ()=>setSelectedConversation(null)
+    },[setSelectedConversation])
+
     return (
         <div className="md:min-w-[650px] flex flex-col">
-            {noChat ? (<NoChat />) : (
+            {!selectedConversation ? (<NoChat />) : (
                 <>
                     <div className="bg-sky-700 opacity-80 px-4 flex justify-between items-center py-2 mb-2">
                         <div className="flex items-center">
                             <span className="label-text"></span>
-                            <span className="text-white font-semibold text-lg">Harry Potter</span>
+                            <span className="text-white font-semibold text-lg">{selectedConversation.fullName}</span>
                         </div>
                         <div>
                             <LogoutBtn />
