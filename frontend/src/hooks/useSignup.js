@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useAuthContext } from "../src/context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 
 const useSignup = () => {
     const [loading, setLoading] = useState(false);
@@ -12,7 +12,7 @@ const useSignup = () => {
         if (!success) return;
         setLoading(true);
         try {
-            const res = await fetch("http://localhost:5000/api/auth/signup",{
+            const res = await fetch("/api/auth/signup",{
                 method : "POST",
                 headers : {"Content-Type" : "application/json"},
                 body : JSON.stringify({ fullName, userName, password, confirmPassword, gender })

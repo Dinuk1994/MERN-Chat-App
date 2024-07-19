@@ -1,5 +1,5 @@
 import { TbLogout2 } from "react-icons/tb";
-import  useLogout  from '../../../hooks/useLogout';
+import  useLogout  from '../../hooks/useLogout';
 
 const LogoutBtn = () => {
   const{loading ,logout } = useLogout();
